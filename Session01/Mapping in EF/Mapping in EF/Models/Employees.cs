@@ -10,7 +10,7 @@ namespace Mapping_in_EF.Models
     {
         // Id Will Generate As Primary Key As => EmployeesId OR Id 
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public string? EmpName { get; set; }
         public decimal Salary { get; set; }
         public int Age { get; set; }
     }

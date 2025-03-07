@@ -16,7 +16,7 @@ namespace Mapping_in_EF.DbContexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = .; Database = Employee ;Trusted_Connection =true");
+            optionsBuilder.UseSqlServer("Server = .; Database = EmployeeDb ;Trusted_Connection =true; TrustServerCertificate=true;");
         }
         public DbSet<Employees> Employee { get; set; }
     }

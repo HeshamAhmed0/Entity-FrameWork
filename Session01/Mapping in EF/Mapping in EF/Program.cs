@@ -1,4 +1,5 @@
 ﻿using Mapping_in_EF.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mapping_in_EF
 {
@@ -10,7 +11,8 @@ namespace Mapping_in_EF
             #region Create Object From DbContext
 
             //using CustomerDbContext dbContext = new CustomerDbContext();
-            // Some Code 
+            //dbContext.Database.Migrate(); // in this case thw database will generate when the app Run
+            //// Some Code 
 
 
 
