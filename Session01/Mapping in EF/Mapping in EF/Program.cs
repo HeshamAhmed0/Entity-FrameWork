@@ -10,7 +10,8 @@ namespace Mapping_in_EF
 
             #region Create Object From DbContext
 
-            //using CustomerDbContext dbContext = new CustomerDbContext();
+            using CustomerDbContext dbContext = new CustomerDbContext();
+            var Emp01=dbContext.Employee.Where(E => E.Id == 1).FirstOrDefault();
             //dbContext.Database.Migrate(); // in this case thw database will generate when the app Run
             //// Some Code 
 
