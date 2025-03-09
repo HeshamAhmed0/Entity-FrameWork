@@ -23,22 +23,24 @@ namespace Mapping_in_EF.Migrations
 
             modelBuilder.Entity("Mapping_in_EF.Models.Employees", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("EmpName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("EmpName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("name")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
+                        .HasColumnName("EmployeeName");
+
+                    b.HasKey("EmpName");
 
                     b.ToTable("Employee");
                 });
