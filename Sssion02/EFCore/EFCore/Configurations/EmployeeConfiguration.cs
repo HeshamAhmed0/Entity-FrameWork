@@ -22,6 +22,7 @@ namespace EFCore.Configurations
                         .HasColumnType("varchar")
                         .HasColumnName("EmpName")
                         .HasMaxLength(50);
+            builder.OwnsOne(E => E.EmpAddres,Addres => Addres.WithOwner());
         }
     }
 }
