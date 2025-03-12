@@ -28,7 +28,7 @@ namespace EFCore.DbContexts
             modelBuilder.ApplyConfigurationsFromAssembly(assembly: Assembly.GetExecutingAssembly());
 
 
-            // Foreign Key will initialize in Table Employee
+            //Foreign Key will initialize in Table Employee
             //modelBuilder.Entity<Employee>()
             //            .HasOne(E => E.Department)
             //            .WithOne(D => D.E)

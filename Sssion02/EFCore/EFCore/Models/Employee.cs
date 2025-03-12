@@ -22,5 +22,9 @@ namespace EFCore.Models
         //public int DepartmentDeptId { get; set; }
        /* public Department? Department { get; set; } */  // Partial Participate
         public Addres EmpAddres { get; set; }
+        [ForeignKey(nameof(DepartmentD))]
+        public int DepartmentId {  get; set; }
+        [InverseProperty(nameof(Department.Employees))]
+        public Department DepartmentD { get; set; }
     }
 }
