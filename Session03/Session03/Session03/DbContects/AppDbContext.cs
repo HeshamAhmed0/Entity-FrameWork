@@ -29,10 +29,12 @@ namespace Session03.DbContects
                         .WithOne(C => C.Course)
                         .HasForeignKey(S => S.CrsId);
 
-            modelBuilder.Entity<Student>()
-                        .HasData(
-                new Student {Id=50,Age = 20, Name = "Khaled" }
-                );
+            #region Data Seeding Using Migration 
+            //modelBuilder.Entity<Student>()
+            //                .HasData(
+            //        new Student { Id = 50, Age = 20, Name = "Khaled" }
+            //        ); 
+            #endregion
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
