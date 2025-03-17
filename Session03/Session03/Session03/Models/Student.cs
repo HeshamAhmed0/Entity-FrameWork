@@ -10,7 +10,7 @@ namespace Session03.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public int Age { get; set; }
+        //public int Age { get; set; }
         public ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
     }
 }
