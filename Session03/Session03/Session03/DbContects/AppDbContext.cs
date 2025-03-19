@@ -20,14 +20,28 @@ namespace Session03.DbContects
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>()
-                        .HasMany(SC => SC.StudentCourses)
-                        .WithOne(S => S.Student)
-                        .HasForeignKey(S => S.StdId);
-            modelBuilder.Entity<Course>()
-                        .HasMany<StudentCourse>(SC => SC.StudentCourses)
-                        .WithOne(C => C.Course)
-                        .HasForeignKey(S => S.CrsId);
+            modelBuilder.Entity<StudentCourse>()
+                        .HasKey(FK => new { FK.StdId, FK.CrsId });
+
+            modelBuilder.Entity<StudentCourse>()
+                        .HasOne(SC => SC.Student)
+                        .WithMany(S => S.StudentCourses)
+                        .HasForeignKey(SC => SC.StdId);
+
+
+            modelBuilder.Entity<StudentCourse>()
+                        .HasOne(SC=>SC.Course)
+                        .WithMany(C=>C.StudentCourses)
+                        .HasForeignKey(SC => SC.CrsId);
+
+            //modelBuilder.Entity<Student>()
+            //            .HasMany(SC => SC.StudentCourses)
+            //            .WithOne(S => S.Student)
+            //            .HasForeignKey(S => S.StdId);
+            //modelBuilder.Entity<Course>()
+            //            .HasMany<StudentCourse>(SC => SC.StudentCourses)
+            //            .WithOne(C => C.Course)
+            //            .HasForeignKey(S => S.CrsId);
 
             #region Data Seeding Using Migration 
             //modelBuilder.Entity<Student>()
@@ -38,5 +52,6 @@ namespace Session03.DbContects
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get;set; }
     }
 }

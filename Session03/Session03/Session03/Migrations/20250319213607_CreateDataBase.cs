@@ -5,7 +5,7 @@
 namespace Session03.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDatabaseAnd3Tables : Migration
+    public partial class CreateDataBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,7 +38,7 @@ namespace Session03.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentCourse",
+                name: "StudentCourses",
                 columns: table => new
                 {
                     StdId = table.Column<int>(type: "int", nullable: false),
@@ -47,15 +47,15 @@ namespace Session03.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentCourse", x => new { x.StdId, x.CrsId });
+                    table.PrimaryKey("PK_StudentCourses", x => new { x.StdId, x.CrsId });
                     table.ForeignKey(
-                        name: "FK_StudentCourse_Courses_CrsId",
+                        name: "FK_StudentCourses_Courses_CrsId",
                         column: x => x.CrsId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentCourse_Students_StdId",
+                        name: "FK_StudentCourses_Students_StdId",
                         column: x => x.StdId,
                         principalTable: "Students",
                         principalColumn: "Id",
@@ -63,8 +63,8 @@ namespace Session03.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentCourse_CrsId",
-                table: "StudentCourse",
+                name: "IX_StudentCourses_CrsId",
+                table: "StudentCourses",
                 column: "CrsId");
         }
 
@@ -72,7 +72,7 @@ namespace Session03.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "StudentCourse");
+                name: "StudentCourses");
 
             migrationBuilder.DropTable(
                 name: "Courses");

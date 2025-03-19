@@ -11,8 +11,8 @@ using Session03.DbContects;
 namespace Session03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250315023203_insertUsingMigration")]
-    partial class insertUsingMigration
+    [Migration("20250319213607_CreateDataBase")]
+    partial class CreateDataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,14 +59,6 @@ namespace Session03.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 50,
-                            Age = 20,
-                            Name = "Khaled"
-                        });
                 });
 
             modelBuilder.Entity("Session03.Models.StudentCourse", b =>
@@ -84,7 +76,7 @@ namespace Session03.Migrations
 
                     b.HasIndex("CrsId");
 
-                    b.ToTable("StudentCourse");
+                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("Session03.Models.StudentCourse", b =>

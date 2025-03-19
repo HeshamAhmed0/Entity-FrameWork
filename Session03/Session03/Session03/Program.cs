@@ -12,13 +12,50 @@ namespace Session03
             AppDbContext appDbContext = new AppDbContext();
 
             #region Manual seed Data
-            //List<Student> students = new List<Student>()
+            //Student Student01 = new Student()
             //{
-            //    new Student(){Name="hesham",Age=21},
-            //    new Student(){Name="hassan",Age=19},
-            //}; 
 
-            //appDbContext.Students.AddRange(students);
+            //    Name = "Hesham",
+            //    Age = 20
+            //};
+            //appDbContext.Students.Add(Student01);
+            //appDbContext.SaveChanges();
+
+
+
+            //Course course01 = new Course()
+            //{
+            //    Title = "Advanced C#"
+            //};
+            //appDbContext.Courses.Add(course01);
+            //appDbContext.SaveChanges();
+
+
+            //StudentCourse studentCourse = new StudentCourse()
+            //{
+            //    StdId=Student01.Id,
+            //    CrsId=course01.Id,
+            //    Grade=90,
+            //};
+            //appDbContext.StudentCourses.Add(studentCourse);
+            //appDbContext.SaveChanges();
+
+            //List<Course> Courses = new List<Course>()
+            //{
+            //    new Course(){Id=10,Title="Advanced C#"},
+            //    new Course(){Id =20,Title="Database"},
+            //};
+
+            //appDbContext.Courses.AddRange(Courses);
+            //appDbContext.SaveChanges();
+
+            //List<StudentCourse> studentCourses = new List<StudentCourse>()
+            //{
+            //    new StudentCourse(){StdId=1,CrsId=10,Grade=20},
+            //    new StudentCourse(){StdId=2,CrsId=20,Grade=300},
+            //};
+
+            //appDbContext.Set<StudentCourse>().AddRange(studentCourses);
             //appDbContext.SaveChanges();
             #endregion
 
@@ -68,6 +105,33 @@ namespace Session03
             #endregion
 
             #region Lazy Loading
+
+            #endregion
+
+            #region Join Category
+            //var Result = appDbContext.Courses.Join(appDbContext.Set<StudentCourse>()
+            //                                              , C => C.Id
+            //                                              , S => S.CrsId
+            //                                              , (C, SC) => new
+            //                                              {
+            //                                                  CourseId = C.Id,
+            //                                                  CourseName = C.Title,
+            //                                                  StudentId = SC.StdId,
+            //                                                  StudentGrade = SC.Grade,
+            //                                              });
+
+            //var result = appDbContext.Courses.Join(appDbContext.StudentCourses, C => C.Id, SC => SC.CrsId,
+            //                                  (C, SC) => new
+            //                                  {
+            //                                     CourseId = C.Id,
+            //                                     CourseTitle =C.Title,
+            //                                     StudentId =SC.StdId,
+            //                                     StudentGrade=SC.Grade,
+            //                                  });
+            //foreach (var item in result) 
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             #endregion
         }

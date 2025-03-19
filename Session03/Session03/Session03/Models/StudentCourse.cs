@@ -11,9 +11,9 @@ namespace Session03.Models
     [PrimaryKey(nameof(StdId),nameof(CrsId))]
     internal class StudentCourse
     {
-        //[ForeignKey(nameof(Student))]
+        [ForeignKey(nameof(Student))]
         public int StdId { get; set; }
-        //[ForeignKey(nameof(Course))]
+        [ForeignKey(nameof(Course))]
         public int CrsId { get; set; }
         public int Grade {  get; set; }
         public Student Student { get; set; } = null!;
