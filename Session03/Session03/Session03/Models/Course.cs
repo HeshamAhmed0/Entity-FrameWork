@@ -8,7 +8,7 @@ namespace Session03.Models
 {
     internal class Course
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Title { get; set; } = null!;
         public ICollection<StudentCourse> StudentCourses { get; set; }=new HashSet<StudentCourse>();
     }
