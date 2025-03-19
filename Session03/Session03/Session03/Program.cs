@@ -22,7 +22,7 @@ namespace Session03
             //appDbContext.SaveChanges();
             #endregion
 
-            #region EagerLoading
+            #region Eager Loading
 
 
 
@@ -31,12 +31,15 @@ namespace Session03
             //Console.WriteLine(StudentCorse);
 
 
-            var Student01 = appDbContext.Set<StudentCourse>().Include(E => E.Student).FirstOrDefault(E => E.StdId == 4);
+            //var Student01 = appDbContext.Set<StudentCourse>().Include(E => E.Student).FirstOrDefault(E => E.StdId == 4);
 
-            Console.WriteLine($"StudentId = {Student01?.StdId}");
-            Console.WriteLine(Student01?.CrsId);
-            Console.WriteLine(Student01?.Grade);
-            Console.WriteLine(Student01?.Student.Name);
+            //Console.WriteLine($"StudentId = {Student01?.StdId}");
+            //Console.WriteLine(Student01?.CrsId);
+            //Console.WriteLine(Student01?.Grade);
+            //Console.WriteLine(Student01?.Student.Name);
+
+
+
 
             //var StdCource =(from D in appDbContext.Students
             //                    where D.Id==Student01.StdId
@@ -47,6 +50,24 @@ namespace Session03
 
 
 
+
+            #endregion
+
+            #region Explicit Loading
+            //var StudentCorse = appDbContext.Set<StudentCourse>().FirstOrDefault(E => E.StdId == 4);
+            //Console.WriteLine($"StudentId = {StudentCorse?.StdId}");
+            //Console.WriteLine($"CourseId = {StudentCorse?.CrsId}");
+            //Console.WriteLine($"Grade = {StudentCorse?.Grade}");
+            ////appDbContext.Entry(StudentCorse).Reference(EF => EF.Student).Load();   //  One RelationShip
+            //  if(StudentCorse is not null)
+            //  {
+            //    appDbContext.Entry(StudentCorse).Reference(E => E.Student).Load();
+            //  }
+
+            //Console.WriteLine($"StudentName = {StudentCorse?.Student?.Name}");
+            #endregion
+
+            #region Lazy Loading
 
             #endregion
         }
