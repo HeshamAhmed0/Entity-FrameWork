@@ -134,6 +134,23 @@ namespace Session03
             //}
 
             #endregion
+
+            #region Group Join 
+            var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses, C => C.Id,SC=>SC.CrsId,(C,SC) => new
+            {
+                Courses=C,
+                SC
+            });
+            foreach(var item in Result)
+            {
+                Console.WriteLine($"CourseId = {item.Courses.Id} , CourseName = {item.Courses.Title}");
+                foreach (var SC in item.SC)
+                {
+                    Console.WriteLine(SC.StdId);
+                }
+            }
+                
+            #endregion
         }
     }
 }
