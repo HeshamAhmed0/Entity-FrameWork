@@ -105,7 +105,14 @@ namespace Session03
             #endregion
 
             #region Lazy Loading
-
+            var Result =
+                from D in appDbContext.Courses
+                select D.Id;
+          foreach(var D in appDbContext.Courses)
+            {
+                Console.WriteLine(D.Id);
+                Console.WriteLine(D.Title);
+            }
             #endregion
 
             #region Join Category
@@ -151,27 +158,27 @@ namespace Session03
             //}
 
 
-            var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses,
-                                                       C => C.Id,
-                                                       SC => SC.CrsId,
-                                                       (C, SC) => new
-                                                       {
-                                                           C.Id,
-                                                           C.Title,
-                                                           SC
+            //var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses,
+            //                                           C => C.Id,
+            //                                           SC => SC.CrsId,
+            //                                           (C, SC) => new
+            //                                           {
+            //                                               C.Id,
+            //                                               C.Title,
+            //                                               SC
 
-                                                       }).SelectMany(S => S.SC, (R, E) => new
-                                                       {
-                                                           R.Id,
-                                                           R.Title,
-                                                           E.CrsId,
-                                                           E.StdId,
-                                                           E.Grade
-                                                       });
-            foreach (var result in Result)
-            {
-                Console.WriteLine($"StudentId = {result.StdId} , CourseId = {result.CrsId} , Grade = {result.Grade}");
-            }
+            //                                           }).SelectMany(S => S.SC, (R, E) => new
+            //                                           {
+            //                                               R.Id,
+            //                                               R.Title,
+            //                                               E.CrsId,
+            //                                               E.StdId,
+            //                                               E.Grade
+            //                                           });
+            //foreach (var result in Result)
+            //{
+            //    Console.WriteLine($"StudentId = {result.StdId} , CourseId = {result.CrsId} , Grade = {result.Grade}");
+            //}
 
             #endregion
         }

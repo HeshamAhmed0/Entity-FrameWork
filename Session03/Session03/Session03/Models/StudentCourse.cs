@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore;
 namespace Session03.Models
 {
     [PrimaryKey(nameof(StdId),nameof(CrsId))]
-    internal class StudentCourse
+    public  class StudentCourse
     {
         [ForeignKey(nameof(Student))]
         public int StdId { get; set; }
         [ForeignKey(nameof(Course))]
         public int CrsId { get; set; }
         public int Grade {  get; set; }
-        public Student Student { get; set; } = null!;
-        public Course Course { get; set; } = null!;
+        public virtual Student Student { get; set; } = null!;
+        public virtual Course Course { get; set; } = null!;
 
 
     }

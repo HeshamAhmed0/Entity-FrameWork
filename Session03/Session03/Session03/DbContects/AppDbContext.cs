@@ -17,6 +17,7 @@ namespace Session03.DbContects
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = .; Database = EFSession03 ; Trusted_Connection = true ;TrustServerCertificate = True;");
+            optionsBuilder.UseLazyLoadingProxies();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
