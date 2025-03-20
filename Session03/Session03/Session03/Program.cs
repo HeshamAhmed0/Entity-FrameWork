@@ -15,7 +15,7 @@ namespace Session03
             //Student Student01 = new Student()
             //{
 
-            //    Name = "Hesham",
+            //    Name = "Mamdouh",
             //    Age = 20
             //};
             //appDbContext.Students.Add(Student01);
@@ -23,19 +23,19 @@ namespace Session03
 
 
 
-            //Course course01 = new Course()
-            //{
-            //    Title = "Advanced C#"
-            //};
-            //appDbContext.Courses.Add(course01);
-            //appDbContext.SaveChanges();
+            ////Course course01 = new Course()
+            ////{
+            ////    Title = "Database"
+            ////};
+            ////appDbContext.Courses.Add(course01);
+            ////appDbContext.SaveChanges();
 
 
             //StudentCourse studentCourse = new StudentCourse()
             //{
-            //    StdId=Student01.Id,
-            //    CrsId=course01.Id,
-            //    Grade=90,
+            //    StdId = Student01.Id,
+            //    CrsId = 50,
+
             //};
             //appDbContext.StudentCourses.Add(studentCourse);
             //appDbContext.SaveChanges();
@@ -136,20 +136,43 @@ namespace Session03
             #endregion
 
             #region Group Join 
-            var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses, C => C.Id,SC=>SC.CrsId,(C,SC) => new
+            //var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses, C => C.Id,SC=>SC.CrsId,(C,SC) => new
+            //{
+            //    Courses=C,
+            //    SC
+            //});
+            //foreach(var item in Result)
+            //{
+            //    Console.WriteLine($"CourseId = {item.Courses.Id} , CourseName = {item.Courses.Title}");
+            //    foreach (var SC in item.SC)
+            //    {
+            //        Console.WriteLine(SC.StdId);
+            //    }
+            //}
+
+
+            var Result = appDbContext.Courses.GroupJoin(appDbContext.StudentCourses,
+                                                       C => C.Id,
+                                                       SC => SC.CrsId,
+                                                       (C, SC) => new
+                                                       {
+                                                           C.Id,
+                                                           C.Title,
+                                                           SC
+
+                                                       }).SelectMany(S => S.SC, (R, E) => new
+                                                       {
+                                                           R.Id,
+                                                           R.Title,
+                                                           E.CrsId,
+                                                           E.StdId,
+                                                           E.Grade
+                                                       });
+            foreach (var result in Result)
             {
-                Courses=C,
-                SC
-            });
-            foreach(var item in Result)
-            {
-                Console.WriteLine($"CourseId = {item.Courses.Id} , CourseName = {item.Courses.Title}");
-                foreach (var SC in item.SC)
-                {
-                    Console.WriteLine(SC.StdId);
-                }
+                Console.WriteLine($"StudentId = {result.StdId} , CourseId = {result.CrsId} , Grade = {result.Grade}");
             }
-                
+
             #endregion
         }
     }
