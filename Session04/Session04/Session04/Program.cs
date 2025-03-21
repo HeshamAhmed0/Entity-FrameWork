@@ -54,23 +54,28 @@ namespace Session04
             #endregion
 
             #region Fluent Syntax 
-            var Result = appDbContext.Employees.Join(appDbContext.Departments
-                                                    , E => E.DepartmentId
-                                                    , D => D.DeptId
-                                                    ,(E ,D) =>new
-                                                    {
-                                                        EmployeeId = E.Id,
-                                                        EmployeeNAme = E.Name,
-                                                        EmployeeAge = E.Age,
-                                                        DepartmentId = D.DeptId,
-                                                        DepartmentName = D.DeptName
+            //var Result = appDbContext.Employees.Join(appDbContext.Departments
+            //                                        , E => E.DepartmentId
+            //                                        , D => D.DeptId
+            //                                        ,(E ,D) =>new
+            //                                        {
+            //                                            EmployeeId = E.Id,
+            //                                            EmployeeNAme = E.Name,
+            //                                            EmployeeAge = E.Age,
+            //                                            DepartmentId = D.DeptId,
+            //                                            DepartmentName = D.DeptName
 
-                                                    });
-            foreach (var Employee in Result)
-            { Console.WriteLine(Employee); }
+            //                                        });
+            //foreach (var Employee in Result)
+            //{ Console.WriteLine(Employee); }
             #endregion
 
             #endregion
+
+            var Result = from item in appDbContext.employeeDepartmentViews
+                         select item;
+            foreach (var item in Result) { Console.WriteLine(item); }
+        
         }
     }
 }

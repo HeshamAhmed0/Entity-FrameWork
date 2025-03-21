@@ -20,10 +20,12 @@ namespace Session04.ApplicationDbcontexts
             modelBuilder.Entity<Employee>().HasOne(E => E.Department)
                                            .WithMany(D => D.Employees)
                                            .HasForeignKey(C => C.Id);
+            modelBuilder.Entity<EmployeeDepartmentView>().ToView("SelectFromEMployee").HasNoKey();
                                           
         }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<EmployeeDepartmentView> employeeDepartmentViews { get; set; }
     }
 }
