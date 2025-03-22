@@ -72,10 +72,21 @@ namespace Session04
 
             #endregion
 
-            var Result = from item in appDbContext.employeeDepartmentViews
-                         select item;
-            foreach (var item in Result) { Console.WriteLine(item); }
-        
+            #region View
+            //var Result = from item in appDbContext.employeeDepartmentViews
+            //             select item;
+            //foreach (var item in Result) { Console.WriteLine(item); } 
+            #endregion
+
+            #region MaxBy , MinBy
+            //var Emp=  appDbContext.Employees.MaxBy(E => E.Id);
+
+            //var Emp = appDbContext.Employees.OrderByDescending(E => E.Id).FirstOrDefault();
+            //Console.WriteLine(Emp.Name); 
+            #endregion
+
+
+
         }
     }
 }
