@@ -117,7 +117,7 @@ namespace Session04
             // with interpolate 
 
             string Name = "Mariam";
-            appDbContext.Database.ExecuteSqlInterpolated($"Update Employees \r\nset Name= '{Name}'\r\nWhere Id=1");
+            appDbContext.Database.ExecuteSqlInterpolated($"Update Employees \r\nset Name= {Name}\r\nWhere Id=1");
             int Count = 1;
             var Result = appDbContext.Employees.FromSqlInterpolated($"select Top({Count})* from Employees ");
 
