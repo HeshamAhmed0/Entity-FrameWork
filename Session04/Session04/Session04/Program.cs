@@ -1,4 +1,5 @@
-﻿using Session04.ApplicationDbcontexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Session04.ApplicationDbcontexts;
 using Session04.Model;
 
 namespace Session04
@@ -85,7 +86,46 @@ namespace Session04
             //Console.WriteLine(Emp.Name); 
             #endregion
 
+            #region Execute [DQL] Select Statemwnt
+            //var Result = appDbContext.Employees.FromSqlRaw("select * from Employees  ");  // in this Case there are no Interpolate
+            //int Count = 1;
+            //var Result = appDbContext.Employees.FromSqlInterpolated($"select Top({Count})* from Employees ");
 
+            //foreach (var Employee in Result)
+            //{
+            //    Console.WriteLine(Employee.Name);
+            //}
+            #endregion
+
+            #region Execute [DML] Insert , Update ,Delete  Statement\
+
+            // Without Interpolate
+
+
+            //appDbContext.Database.ExecuteSqlRaw(@"Update Employees 
+            //                                      set Name= 'Hassan'
+            //                                        Where Id=1");
+            //int Count = 1;
+            //var Result = appDbContext.Employees.FromSqlInterpolated($"select Top({Count})* from Employees ");
+
+            //foreach (var Employee in Result)
+            //{
+            //    Console.WriteLine(Employee.Name);
+            //}
+
+
+            // with interpolate 
+
+            string Name = "Mariam";
+            appDbContext.Database.ExecuteSqlInterpolated($"Update Employees \r\nset Name= '{Name}'\r\nWhere Id=1");
+            int Count = 1;
+            var Result = appDbContext.Employees.FromSqlInterpolated($"select Top({Count})* from Employees ");
+
+            foreach (var Employee in Result)
+            {
+                Console.WriteLine(Employee.Name);
+            }
+            #endregion
 
         }
     }
