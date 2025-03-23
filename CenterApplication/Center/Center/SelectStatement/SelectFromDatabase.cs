@@ -53,18 +53,24 @@ namespace Center.SelectStatement
                 Constructor = C.ConstructorName,
                 ConstrucorPhoneNumber = C.PhoneNumber,
             });
-            foreach (var Student in Students)
+            if (Students is not null)
             {
-                Console.WriteLine(Student);
+                foreach (var Student in Students)
+                {
+                    Console.WriteLine(Student);
+                }
             }
         }
         public  void SelectFromDepartment()
         {
             AppDbContext appDbContext = new AppDbContext();
            var Departments= appDbContext.Departments.ToList();
-            foreach (var Department in Departments )
+           if (Departments is not null)
             {
-                Console.WriteLine(Department);
+                foreach (var Department in Departments)
+                {
+                    Console.WriteLine(Department);
+                }
             }
 
 
@@ -82,9 +88,12 @@ namespace Center.SelectStatement
                                                                   DepartmentId =D.DepartmentId,
                                                                   DepartmentName =D.DepartmentName,
                                                               });
-            foreach (var Constructor in Constructors)
+           if(Constructors is not null)
             {
-                Console.WriteLine(Constructor);
+                foreach (var Constructor in Constructors)
+                {
+                    Console.WriteLine(Constructor);
+                }
             }
         }
     }
