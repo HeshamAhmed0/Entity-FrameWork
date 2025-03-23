@@ -25,10 +25,25 @@ namespace Center.ApplicationDbContexts
                                           .WithMany(S => S.Students)
                                           .HasForeignKey(C => C.ConstructorId);
 
+            modelBuilder.Entity<StudentCourses>().HasKey(SC=>new { SC.CourseId,SC.StudentId});
             
+            modelBuilder.Entity<StudentCourses>().HasOne(C=>C.Courses)
+                                                 .WithMany(SC =>SC.studentCourses)
+                                                 .HasForeignKey(C=>C.CourseId);
+
+            modelBuilder.Entity<StudentCourses>().HasOne(S => S.Student)
+                                                 .WithMany(SC=>SC.StudentCourses)
+                                                 .HasForeignKey(S=>S.StudentId);
+
+            //modelBuilder.Entity<Student>().HasMany(C => C.courses)
+            //                              .WithOne(S => S.student)
+            //                              .HasForeignKey(S => S.CourseId);
+                                        
+
         }
         public DbSet<Constructor> Constructors { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Courses> Courses { get; set; }
     }
 }

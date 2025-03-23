@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Center.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250322144021_ApplicationDbContext")]
-    partial class ApplicationDbContext
+    [Migration("20250323112958_CreateRelationBetweenCourseAndStudentss")]
+    partial class CreateRelationBetweenCourseAndStudentss
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,23 @@ namespace Center.Migrations
                     b.HasIndex("DeptId");
 
                     b.ToTable("Constructors");
+                });
+
+            modelBuilder.Entity("Center.Models.Courses", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseId"));
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseId");
+
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Center.Models.Department", b =>
@@ -99,6 +116,24 @@ namespace Center.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("Center.Models.StudentCourses", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentCourses");
+                });
+
             modelBuilder.Entity("Center.Models.Constructor", b =>
                 {
                     b.HasOne("Center.Models.Department", "Department")
@@ -121,14 +156,43 @@ namespace Center.Migrations
                     b.Navigation("Constructor");
                 });
 
+            modelBuilder.Entity("Center.Models.StudentCourses", b =>
+                {
+                    b.HasOne("Center.Models.Courses", "Courses")
+                        .WithMany("studentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Center.Models.Student", "Student")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Courses");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Center.Models.Constructor", b =>
                 {
                     b.Navigation("Students");
                 });
 
+            modelBuilder.Entity("Center.Models.Courses", b =>
+                {
+                    b.Navigation("studentCourses");
+                });
+
             modelBuilder.Entity("Center.Models.Department", b =>
                 {
                     b.Navigation("Constructor");
+                });
+
+            modelBuilder.Entity("Center.Models.Student", b =>
+                {
+                    b.Navigation("StudentCourses");
                 });
 #pragma warning restore 612, 618
         }

@@ -19,10 +19,12 @@ namespace Center
             Console.WriteLine("1 :: Insert");
             Console.WriteLine("2 :: Select");
             Console.WriteLine("3 :: Remove");
+            Console.Write("You Choosen : ");
             Input = int.Parse(Console.ReadLine());
             if (Input == 1)
             {
-                InsertSection();
+               InsertStatemnet insertStatemnet = new InsertStatemnet();
+                insertStatemnet.InsertSection();
             }
             else if (Input == 2)
             {
@@ -41,35 +43,7 @@ namespace Center
             AnotherDescition();
 
         }
-        public void InsertSection()
-        {
-
-            Console.Clear();
-            Console.WriteLine("1 :: InsertIntoConstructor");
-            Console.WriteLine("2 :: InsertIntoDepartment");
-            Console.WriteLine("3 :: InsertIntoStudent");
-            Input = int.Parse(Console.ReadLine());
-            Console.Clear() ;
-            if (Input == 1)
-            {
-                InsertIntoConstructor.InserConstructor();
-            }
-            else if (Input == 2)
-            {
-                InsertIntoDepartment.InsertDepartment();
-            }
-            else if (Input == 3)
-            {
-                InsertIntoStudents.InsertStudent();
-            }
-            else
-            {
-                Console.WriteLine("You Choosen Is Not Correct Please Choose Correct Choosen");
-                InsertSection();
-            }
-            AnotherDescition();
-
-        }
+      
         public void AnotherDescition()
         {
             Console.Clear();

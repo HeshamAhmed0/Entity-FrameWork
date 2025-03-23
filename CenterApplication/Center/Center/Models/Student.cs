@@ -18,9 +18,18 @@ namespace Center.Models
 
 
 
+      
+        //public int CourseId { get; set; }
+        //public ICollection<Courses> courses { get; set; }
+
+
+
         [ForeignKey(nameof(Constructor))]
         public int ConstructorId { get; set; }
         public Constructor Constructor {  get; set; }
+
+
+        public ICollection<StudentCourses> StudentCourses { get; set; }
         
     }
 }
