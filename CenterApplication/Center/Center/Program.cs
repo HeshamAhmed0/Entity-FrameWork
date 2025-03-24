@@ -9,7 +9,7 @@ namespace Center
         static void Main(string[] args)
         {
             Start start = new Start();
-            //start.Decition();
+            start.Decition();
         }
     }
 }
