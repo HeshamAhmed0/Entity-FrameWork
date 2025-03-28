@@ -46,7 +46,7 @@ namespace Center
       
         public void AnotherDescition()
         {
-            Console.Clear();
+          
             Console.WriteLine("Do You Want Another Desction " +
                               "1 :: Yes " +
                               "2 :: No");
