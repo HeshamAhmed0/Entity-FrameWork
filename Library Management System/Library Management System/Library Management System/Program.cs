@@ -1,10 +1,13 @@
-﻿namespace Library_Management_System
+﻿using Library_Management_System.Start;
+
+namespace Library_Management_System
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Sections section = new Sections();
+            
         }
     }
 }
