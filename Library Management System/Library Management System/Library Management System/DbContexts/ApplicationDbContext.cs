@@ -17,11 +17,22 @@ namespace Library_Management_System.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Book>().HasOne(D => D.Department)
                                        .WithMany(B => B.Books)
                                        .HasForeignKey(BD => BD.DepartmentId);
+
+
+            modelBuilder.Entity<Person>().HasOne(Person => Person.Books)
+                                         .WithMany(B => B.Person)
+                                         .HasForeignKey(PB => PB.BookId);
+
+            modelBuilder.Entity<Book>().HasKey(K => K.BookNumber);
+
+            modelBuilder.Entity<Department>().HasKey(D => D.DepartmentNumber);
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Person> Persons { get; set; }
     }
 }

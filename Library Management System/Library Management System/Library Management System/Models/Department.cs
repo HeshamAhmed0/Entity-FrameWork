@@ -8,9 +8,14 @@ namespace Library_Management_System.Models
 {
     internal class Department
     {
-        public int DepartmentId { get; set; }
+        public int DepartmentNumber { get; set; }
         public string DepartmentName { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+
+        #region RelationShip Between Department And Books
+        public ICollection<Book> Books { get; set; } 
+        #endregion
+
+
     }
 }
