@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Library_Management_System.DbContexts;
 using Library_Management_System.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library_Management_System.Start
 {
@@ -33,10 +34,13 @@ namespace Library_Management_System.Start
             Console.Write("Enter Book Salary : ");
             decimal Salary = decimal.Parse(Console.ReadLine());
             Console.Clear();
+            Console.Write("Enter Department Number : ");
+            int DepartmentNumber =int.Parse(Console.ReadLine());
             Book NewBook = new Book()
             {
                 BookName = BookName,
                 BookSalary = Salary,
+                DepartmentId = DepartmentNumber,
             };
             dbContext.Books.Add(NewBook);
             dbContext.SaveChanges();
@@ -55,9 +59,63 @@ namespace Library_Management_System.Start
             };
             dbContext.Persons.Add(NewPerson);
             dbContext.SaveChanges();
-        } 
+        }
         #endregion
 
+        #region Delete Section 
+        public void DeleteFromBooks()
+        {
+
+        }
+        #endregion
+
+        #region SelectSection
+        public void SelectFromBooks()
+        {
+            Console.WriteLine("Do You Need To Select All Books ");
+            Console.Write("1 : Yes  &&  2 : No  ");
+            int Input = int.Parse(Console.ReadLine());
+            if (Input == 1)
+            {
+                var Result = dbContext.Books.Join(dbContext.Departments,
+                                                 B => B.DepartmentId,
+                                                 D => D.DepartmentNumber,
+                                                 (B, D) => new
+                                                 {
+                                                     BookId =B.BookNumber,
+                                                     BookName =B.BookName,
+                                                     BookSalary =B.BookSalary,
+                                                     BookDepartment=D.DepartmentName,
+                                                 });
+                foreach(var  item in Result)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            if(Input == 2)
+            {
+                Console.Write("Enter Name Of Book You Need : ");
+                string NameOfBook = Console.ReadLine();
+                Console.Clear();
+              foreach(var item in  dbContext.Books)
+                {
+                    if (item.BookName == NameOfBook)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    else
+                    {
+                        Console.WriteLine("This Book Not Founded ");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Your Input Is Not Correct .");
+            }
+            
+        } 
+        #endregion
 
     }
 }
