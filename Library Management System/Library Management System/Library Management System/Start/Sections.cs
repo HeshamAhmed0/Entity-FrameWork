@@ -51,14 +51,34 @@ namespace Library_Management_System.Start
             Console.Write("Enter Person Name : ");
             string Name = Console.ReadLine();
             Console.Clear();
+            int BookId=0;
+            bool PersonResult=false;
+           while (PersonResult==false)
+            {
+                Console.Write("Enter Book Id : ");
+                 BookId = int.Parse(Console.ReadLine());
+                foreach (var book in dbContext.Books)
+                {
+                    if (book.BookNumber == BookId)
+                    {
+                       PersonResult = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("BookId id not Correct");
+                    }
+                }
+            }
 
             Person NewPerson = new Person()
             {
                 Name = Name,
                 DateTime = DateTime.Now,
+                BookId = BookId,
             };
             dbContext.Persons.Add(NewPerson);
             dbContext.SaveChanges();
+
         }
         #endregion
 
@@ -70,11 +90,12 @@ namespace Library_Management_System.Start
         #endregion
 
         #region SelectSection
+        int Input;
         public void SelectFromBooks()
         {
             Console.WriteLine("Do You Need To Select All Books ");
             Console.Write("1 : Yes  &&  2 : No  ");
-            int Input = int.Parse(Console.ReadLine());
+             Input = int.Parse(Console.ReadLine());
             if (Input == 1)
             {
                 var Result = dbContext.Books.Join(dbContext.Departments,
@@ -115,6 +136,13 @@ namespace Library_Management_System.Start
             }
             
         } 
+
+        public void SelectFromDepartment()
+        {
+            Console.WriteLine("Do You Need To Select All Department ");
+            Console.Write("1 : Yes  &&  2 : No  ");
+             Input = int.Parse(Console.ReadLine());
+        }
         #endregion
 
     }
