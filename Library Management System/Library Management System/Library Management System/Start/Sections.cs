@@ -15,7 +15,7 @@ namespace Library_Management_System.Start
         ApplicationDbContext dbContext = new ApplicationDbContext();
 
         #region Insert Section 
-        public void InsertIntoDepartment()
+        private void InsertIntoDepartment()
         {
             Console.Clear();
             Console.Write("Enter DepartmentName : ");
@@ -29,7 +29,7 @@ namespace Library_Management_System.Start
             dbContext.SaveChanges();
             
         }
-        public void InsertIntoBooks()
+        private void InsertIntoBooks()
         {
             Console.Clear();
             Console.Write("Enter Book Name : ");
@@ -50,7 +50,7 @@ namespace Library_Management_System.Start
             dbContext.SaveChanges();
         }
 
-        public void InsertIntoPerson()
+        private void InsertIntoPerson()
         {
             Console.Clear();
 
@@ -97,7 +97,7 @@ namespace Library_Management_System.Start
 
         #region SelectSection
         int Input;
-        public void SelectFromBooks()
+        private void SelectFromBooks()
         {
             Console.Clear();
 
@@ -145,7 +145,7 @@ namespace Library_Management_System.Start
             
         } 
 
-        public void SelectFromDepartment()
+        private void SelectFromDepartment()
         {
             Console.Clear();
 
@@ -177,7 +177,7 @@ namespace Library_Management_System.Start
             }
         }
 
-        public void SelectFromPerson()
+        private void SelectFromPerson()
         {
             Console.Clear();
 
@@ -272,7 +272,7 @@ namespace Library_Management_System.Start
             }
             AnotherAction();
         }
-        public void AnotherAction()
+        private void AnotherAction()
         {
             Console.WriteLine("Do You Need Anothe Action ");
             Console.WriteLine("  1 : Yes    &&    2 : No ");
