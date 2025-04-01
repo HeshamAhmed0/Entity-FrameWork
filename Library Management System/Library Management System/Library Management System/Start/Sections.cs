@@ -68,12 +68,17 @@ namespace Library_Management_System.Start
                     if (book.BookNumber == BookId)
                     {
                        PersonResult = true;
+                        continue;
                     }
-                    else
-                    {
-                        Console.WriteLine("BookId id not Correct");
-                    }
+                  
                 }
+                if (PersonResult==false)
+                {
+                    Console.WriteLine("BookId id not Correct");
+
+                }
+
+
             }
 
             Person NewPerson = new Person()
@@ -89,10 +94,45 @@ namespace Library_Management_System.Start
         #endregion
 
         #region Delete Section 
-        public void DeleteFromBooks()
+        private void RemoveFromPerson()
         {
-
+            Console.Clear();
+            Console.Write("Enter Person Name Do You Want To Remove it : ");
+            string PersonName = Console.ReadLine();
+            var DleteFromPerson = dbContext.Persons.Where(C => C.Name == PersonName).FirstOrDefault();
+            if (DleteFromPerson is not null)
+            {
+                dbContext.Persons.Remove(DleteFromPerson);
+                dbContext.SaveChanges();
+            }
         }
+
+        private void RemoveFromBooks()
+        {
+            Console.Clear();
+            Console.Write("Enter Book Name Do You Want To Delete It : ");
+            string NameOfBook =Console.ReadLine();
+            var DeleteFromBooks = dbContext.Books.Where(N => N.BookName == NameOfBook).FirstOrDefault();
+            if (DeleteFromBooks is not null)
+            {
+                dbContext.Books.Remove(DeleteFromBooks);
+                dbContext.SaveChanges();
+            }
+        }
+
+        private void RemoveFromDepartment()
+        {
+            Console.Clear();
+            Console.Write("Enter Department Name Do You Want To Delete It : ");
+            string NameOfDepartment =Console.ReadLine();
+            var DeleteFromDepartment=dbContext.Departments.Where(N => N.DepartmentName == NameOfDepartment).FirstOrDefault();
+            if (DeleteFromDepartment is not null)
+            {
+                dbContext.Departments.Remove(DeleteFromDepartment);
+                dbContext.SaveChanges();
+            }
+        }
+
         #endregion
 
         #region SelectSection
@@ -208,12 +248,14 @@ namespace Library_Management_System.Start
 
         #region Anothe Action 
 
+        #region Start
         public void Action()
         {
             Sections sections = new Sections();
 
             Console.WriteLine("1 : Select From Database");
             Console.WriteLine("2 : Insert Into Database");
+            Console.WriteLine("3 : Delete From Database");
             Console.Write("What Do You Want : ");
             int ChoosenForSection = int.Parse(Console.ReadLine());
             if (ChoosenForSection == 1)
@@ -239,7 +281,7 @@ namespace Library_Management_System.Start
                 {
                     Console.WriteLine("Your Decision Is Not Correct ");
                 }
-                
+
             }
             else if (ChoosenForSection == 2)
             {
@@ -263,37 +305,66 @@ namespace Library_Management_System.Start
                 {
                     Console.WriteLine("Your Choosen Is Not Correct ");
                 }
-               
+
+            }
+            else if (ChoosenForSection == 3)
+            {
+                Console.WriteLine("1 : Remove From Person");
+                Console.WriteLine("2 : Remove From Books");
+                Console.WriteLine("3 : Remove From Department");
+                Console.Write("Your Choosen : ");
+                int RemoveChoosen=int.Parse(Console.ReadLine());
+                if(RemoveChoosen == 1)
+                {
+                    sections.RemoveFromPerson();
+                }else if(RemoveChoosen == 2)
+                {
+                    sections.RemoveFromBooks();
+                }
+                else if (RemoveChoosen == 3)
+                {
+                    sections.RemoveFromDepartment();
+                }
+                else
+                {
+                    Console.WriteLine("Your Choosen Is Not Correct");
+                }
+
             }
             else
             {
                 Console.WriteLine("Your Choosen Is Not Correct");
-               
+
             }
             AnotherAction();
         }
+        #endregion
+
+        #region New Action 
         private void AnotherAction()
         {
             Console.WriteLine("Do You Need Anothe Action ");
             Console.WriteLine("  1 : Yes    &&    2 : No ");
             Console.Write("Your decision : ");
-           int ChoosenForAnotheAction= int.Parse(Console.ReadLine());
+            int ChoosenForAnotheAction = int.Parse(Console.ReadLine());
             Console.Clear();
             if (ChoosenForAnotheAction == 1)
             {
 
                 Action();
-               
+
             }
-            else if(ChoosenForAnotheAction == 2)
+            else if (ChoosenForAnotheAction == 2)
             {
                 Console.WriteLine("I Am Happy To Meet You");
-            }else
+            }
+            else
             {
                 Console.WriteLine("Your Decision Is Not Correct");
                 AnotherAction();
             }
-        }
+        } 
+        #endregion
         #endregion
     }
 }
