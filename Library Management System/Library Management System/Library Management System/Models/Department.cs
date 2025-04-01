@@ -13,9 +13,13 @@ namespace Library_Management_System.Models
 
 
         #region RelationShip Between Department And Books
-        public ICollection<Book> Books { get; set; } 
+        public ICollection<Book> Books { get; set; }
         #endregion
 
 
+        public override string ToString()
+        {
+            return $"Department Id : {DepartmentNumber} , Department Name : {DepartmentName}";
+        }
     }
 }

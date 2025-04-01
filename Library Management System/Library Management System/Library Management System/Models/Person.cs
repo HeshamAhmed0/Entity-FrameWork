@@ -16,10 +16,13 @@ namespace Library_Management_System.Models
 
         #region RelationShip Between Person And Book 
         public int BookId { get; set; }
-        public Book Books { get; set; } 
+        public Book Books { get; set; }
         #endregion
 
-
+        //public override string ToString()
+        //{
+        //    return $"Id : {Id} , Name : {Name} , DateTime : {DateTime}";
+        //}
 
     }
 }

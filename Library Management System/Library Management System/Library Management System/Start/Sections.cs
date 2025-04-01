@@ -142,6 +142,55 @@ namespace Library_Management_System.Start
             Console.WriteLine("Do You Need To Select All Department ");
             Console.Write("1 : Yes  &&  2 : No  ");
              Input = int.Parse(Console.ReadLine());
+             if(Input == 1)
+            {
+                foreach(var item in dbContext.Departments)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            else if(Input == 2)
+            {
+                Console.Write("Enter Id For Department You Need : ");
+                Input=int.Parse(Console.ReadLine());
+                foreach (var item in dbContext.Departments)
+                {
+                    if (item.DepartmentNumber==Input)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Id Is Not Correct");
+                    }
+                }
+            }
+        }
+
+        public void SelectFromPerson()
+        {
+            Console.WriteLine("Do You Need To Select All Persons ");
+            Console.Write("1 : Yes  &&  2 : No  ");
+            Input = int.Parse(Console.ReadLine());
+            if(Input == 1)
+            {
+                var Result03 = dbContext.Persons.Join(dbContext.Books,
+                                                     C => C.BookId,
+                                                     B => B.BookNumber,
+                                                     (C, B) => new
+                                                     {
+                                                         Id = C.Id,
+                                                         Name = C.Name,
+                                                         TimeOfBorrowBook =C.DateTime,
+                                                         BookName=B.BookName,
+                                                     });
+
+                foreach (var item in Result03)
+                {
+                    Console.WriteLine(item);
+                }
+                
+            }
         }
         #endregion
 
