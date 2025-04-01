@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Library_Management_System.DbContexts;
 using Library_Management_System.Models;
 using Microsoft.EntityFrameworkCore;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Library_Management_System.Start
 {
@@ -16,6 +17,7 @@ namespace Library_Management_System.Start
         #region Insert Section 
         public void InsertIntoDepartment()
         {
+            Console.Clear();
             Console.Write("Enter DepartmentName : ");
             string DepartmentName = Console.ReadLine();
             Console.Clear();
@@ -25,9 +27,11 @@ namespace Library_Management_System.Start
             };
             dbContext.Departments.Add(NewDepartment);
             dbContext.SaveChanges();
+            
         }
         public void InsertIntoBooks()
         {
+            Console.Clear();
             Console.Write("Enter Book Name : ");
             string BookName = Console.ReadLine();
             Console.Clear();
@@ -48,6 +52,8 @@ namespace Library_Management_System.Start
 
         public void InsertIntoPerson()
         {
+            Console.Clear();
+
             Console.Write("Enter Person Name : ");
             string Name = Console.ReadLine();
             Console.Clear();
@@ -93,6 +99,8 @@ namespace Library_Management_System.Start
         int Input;
         public void SelectFromBooks()
         {
+            Console.Clear();
+
             Console.WriteLine("Do You Need To Select All Books ");
             Console.Write("1 : Yes  &&  2 : No  ");
              Input = int.Parse(Console.ReadLine());
@@ -139,6 +147,8 @@ namespace Library_Management_System.Start
 
         public void SelectFromDepartment()
         {
+            Console.Clear();
+
             Console.WriteLine("Do You Need To Select All Department ");
             Console.Write("1 : Yes  &&  2 : No  ");
              Input = int.Parse(Console.ReadLine());
@@ -169,6 +179,8 @@ namespace Library_Management_System.Start
 
         public void SelectFromPerson()
         {
+            Console.Clear();
+
             Console.WriteLine("Do You Need To Select All Persons ");
             Console.Write("1 : Yes  &&  2 : No  ");
             Input = int.Parse(Console.ReadLine());
@@ -194,5 +206,94 @@ namespace Library_Management_System.Start
         }
         #endregion
 
+        #region Anothe Action 
+
+        public void Action()
+        {
+            Sections sections = new Sections();
+
+            Console.WriteLine("1 : Select From Database");
+            Console.WriteLine("2 : Insert Into Database");
+            Console.Write("What Do You Want : ");
+            int ChoosenForSection = int.Parse(Console.ReadLine());
+            if (ChoosenForSection == 1)
+            {
+                Console.WriteLine("1 : Select From Person");
+                Console.WriteLine("2 : Select From Department");
+                Console.WriteLine("3 : Select From Books");
+                Console.Write("What Do You Want : ");
+                int ChoosenForSelect = int.Parse(Console.ReadLine());
+                if (ChoosenForSelect == 1)
+                {
+                    sections.SelectFromPerson();
+                }
+                else if (ChoosenForSelect == 2)
+                {
+                    sections.SelectFromDepartment();
+                }
+                else if (ChoosenForSelect == 3)
+                {
+                    sections.SelectFromBooks();
+                }
+                else
+                {
+                    Console.WriteLine("Your Decision Is Not Correct ");
+                }
+                
+            }
+            else if (ChoosenForSection == 2)
+            {
+                Console.WriteLine("1 : Insert Into Person");
+                Console.WriteLine("2 : Insert Into Books ");
+                Console.WriteLine("3 : Insert Into Department");
+                int ChoosenForInsert = int.Parse(Console.ReadLine());
+                if (ChoosenForInsert == 1)
+                {
+                    sections.InsertIntoPerson();
+                }
+                else if (ChoosenForInsert == 2)
+                {
+                    sections.InsertIntoBooks();
+                }
+                else if (ChoosenForInsert == 3)
+                {
+                    sections.InsertIntoDepartment();
+                }
+                else
+                {
+                    Console.WriteLine("Your Choosen Is Not Correct ");
+                }
+               
+            }
+            else
+            {
+                Console.WriteLine("Your Choosen Is Not Correct");
+               
+            }
+            AnotherAction();
+        }
+        public void AnotherAction()
+        {
+            Console.WriteLine("Do You Need Anothe Action ");
+            Console.WriteLine("  1 : Yes    &&    2 : No ");
+            Console.Write("Your decision : ");
+           int ChoosenForAnotheAction= int.Parse(Console.ReadLine());
+            Console.Clear();
+            if (ChoosenForAnotheAction == 1)
+            {
+
+                Action();
+               
+            }
+            else if(ChoosenForAnotheAction == 2)
+            {
+                Console.WriteLine("I Am Happy To Meet You");
+            }else
+            {
+                Console.WriteLine("Your Decision Is Not Correct");
+                AnotherAction();
+            }
+        }
+        #endregion
     }
 }

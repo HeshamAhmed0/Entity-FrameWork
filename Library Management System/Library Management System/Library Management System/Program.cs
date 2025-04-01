@@ -7,7 +7,7 @@ namespace Library_Management_System
         static void Main(string[] args)
         {
             Sections section = new Sections();
-            section.SelectFromPerson();
+            section.Action();
         }
     }
 }
