@@ -246,8 +246,6 @@ namespace Library_Management_System.Start
         }
         #endregion
 
-        #region Anothe Action 
-
         #region Start
         public void Action()
         {
@@ -313,11 +311,12 @@ namespace Library_Management_System.Start
                 Console.WriteLine("2 : Remove From Books");
                 Console.WriteLine("3 : Remove From Department");
                 Console.Write("Your Choosen : ");
-                int RemoveChoosen=int.Parse(Console.ReadLine());
-                if(RemoveChoosen == 1)
+                int RemoveChoosen = int.Parse(Console.ReadLine());
+                if (RemoveChoosen == 1)
                 {
                     sections.RemoveFromPerson();
-                }else if(RemoveChoosen == 2)
+                }
+                else if (RemoveChoosen == 2)
                 {
                     sections.RemoveFromBooks();
                 }
@@ -340,7 +339,7 @@ namespace Library_Management_System.Start
         }
         #endregion
 
-        #region New Action 
+        #region Another Action
         private void AnotherAction()
         {
             Console.WriteLine("Do You Need Anothe Action ");
@@ -363,8 +362,7 @@ namespace Library_Management_System.Start
                 Console.WriteLine("Your Decision Is Not Correct");
                 AnotherAction();
             }
-        } 
-        #endregion
+        }
         #endregion
     }
 }
